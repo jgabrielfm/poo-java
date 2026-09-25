@@ -1,0 +1,10 @@
+java,Linguagem de programação com uma xícara de café no logo
+classe,Molde usado para criar objetos
+objeto,Instância de uma classe
+heranca,Quando uma classe reaproveita atributos e métodos de outra
+metodo,Comportamento definido dentro de uma classe
+atributo,Característica guardada dentro de um objeto
+interface,Contrato que uma classe se compromete a implementar
+construtor,Método chamado ao criar um objeto
+encapsulamento,Esconder os detalhes internos de um objeto
+polimorfismo,Um mesmo método com comportamentos diferentes
