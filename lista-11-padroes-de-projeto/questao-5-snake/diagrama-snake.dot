@@ -1,0 +1,45 @@
+digraph Snake {
+  graph [rankdir=TB, nodesep=0.6, ranksep=0.9, fontname="DejaVu Sans", splines=spline];
+  node  [shape=plaintext, fontname="DejaVu Sans", fontsize=11];
+  edge  [fontname="DejaVu Sans", fontsize=10];
+
+  ElementoGrafico [label=<
+   <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4">
+    <TR><TD><I>«abstract»</I><BR/><B><I>ElementoGrafico</I></B></TD></TR>
+    <HR/><TR><TD ALIGN="LEFT">- cor: String</TD></TR>
+    <HR/><TR><TD ALIGN="LEFT"><I>+ desenhar(): void</I></TD></TR>
+   </TABLE>>];
+
+  Retangulo [label=<
+   <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4">
+    <TR><TD><B>Retangulo</B></TD></TR>
+    <HR/><TR><TD ALIGN="LEFT">- x: int<BR ALIGN="LEFT"/>- y: int<BR ALIGN="LEFT"/>- largura: int<BR ALIGN="LEFT"/>- altura: int<BR ALIGN="LEFT"/></TD></TR>
+    <HR/><TR><TD ALIGN="LEFT">+ desenhar(): void</TD></TR>
+   </TABLE>>];
+
+  Cobra [label=<
+   <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4">
+    <TR><TD><B>Cobra</B></TD></TR>
+    <HR/><TR><TD ALIGN="LEFT">- corpo: List&lt;Retangulo&gt;</TD></TR>
+    <HR/><TR><TD ALIGN="LEFT">+ desenhar(): void<BR ALIGN="LEFT"/>+ devorar(c: Comida): void<BR ALIGN="LEFT"/></TD></TR>
+   </TABLE>>];
+
+  Comida [label=<
+   <TABLE BORDER="1" CELLBORDER="0" CELLSPACING="0" CELLPADDING="4">
+    <TR><TD><B>Comida</B></TD></TR>
+    <HR/><TR><TD ALIGN="LEFT">- retangulo: Retangulo<BR ALIGN="LEFT"/>- pontuacao: int<BR ALIGN="LEFT"/></TD></TR>
+    <HR/><TR><TD ALIGN="LEFT">+ desenhar(): void<BR ALIGN="LEFT"/>+ reposicionar(): void<BR ALIGN="LEFT"/></TD></TR>
+   </TABLE>>];
+
+  {rank=same; Cobra; Comida;}
+  Cobra -> Comida [style=invis];
+
+  // Generalizacao (heranca): triangulo vazio na superclasse
+  ElementoGrafico -> Cobra     [dir=back, arrowtail=empty, arrowsize=1.3];
+  ElementoGrafico -> Comida    [dir=back, arrowtail=empty, arrowsize=1.3];
+  ElementoGrafico -> Retangulo [dir=back, arrowtail=empty, arrowsize=1.3];
+
+  // Composicao (losango cheio) e agregacao (losango vazio) no lado do "todo"
+  Cobra  -> Retangulo [dir=back, arrowtail=diamond,  arrowsize=1.3, headlabel="1..*", labeldistance=2.2, labelangle=-30];
+  Comida -> Retangulo [dir=back, arrowtail=odiamond, arrowsize=1.3, headlabel="1", labeldistance=1.8, labelangle=30];
+}
